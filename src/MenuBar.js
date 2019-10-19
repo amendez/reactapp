@@ -11,7 +11,7 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 const useStyles = makeStyles(theme => ({
   menuBar: {
-    marginBottom: 10,
+    marginBottom: 20,
     backgroundColor: "#3f51b5"
   },
   title: {
