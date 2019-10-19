@@ -1,6 +1,7 @@
 .App {
   min-height: 100vh;
-  background: pink;
+  background: rgb(100, 100, 100);
+  color: rgb(1, 17, 17);
 }
 
 .search-form{
@@ -14,13 +15,6 @@
   width: 50%;
   border: none;
   padding: 10px;
-}
-
-.search-button {
-  background: lightcoral;
-  border: none;
-  padding: 10px 20px;
-  color: wheat;
 }
 
 .recipes {

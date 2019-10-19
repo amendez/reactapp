@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 import Recipe from "./Recipe"
-
+import MenuBar from "./MenuBar"
 
 const App = () => {
   const APP_ID = "bdc6e3c3"
@@ -10,17 +10,22 @@ const App = () => {
   const [recipes, setRecipes] = useState([])
   const [search, setSearch] = useState("")
   const [query, setQuery] = useState("chicken")
-
-  useEffect(() => {
-    getRecipes()
-  }, [query])
+  const [spinner, setSpinner] = useState(true)
 
   const getRecipes = async () => {
+    setSpinner(true)
     const response = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`)
     const data = await response.json()
     console.log(data.hits)
     setRecipes(data.hits)
+    setSpinner(false)
   }
+
+  useEffect(() => {
+    getRecipes()
+  // eslint-disable-next-line
+  }, [query])
+
   const updateSearch = e => {
     setSearch(e.target.value)
   }
@@ -32,10 +37,7 @@ const App = () => {
 
   return(
     <div className="App">
-      <form className="search-form" onSubmit={getSearch}>
-        <input className="search-bar" type="text"  value={search} onChange={updateSearch} />
-        <button className="search-button" type="submit">Buscar</button>
-      </form>
+      <MenuBar search={search} updateSearch={updateSearch} getSearch={getSearch} spinner={spinner} />
       <div className="recipes">
       {recipes.map(recipe=> (
         <Recipe 
